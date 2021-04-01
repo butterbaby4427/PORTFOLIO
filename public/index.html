@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<title>Good Evening</title>
+		<link rel="stylesheet" href="funstyles.css"/>
+		<script type="text/javascript">
+			var comment1;
+			var comment2;
+			var name1;
+			var name2;
+			var submit1;
+			var submit2;
+			var comments1;
+			var comments2;
+			var form1;
+			var form2;
+			var project1;
+			var project2;
+			window.addEventListener("load",init);
+			function init(){
+				comment1 = document.getElementById('comment1');
+				comment2 = document.getElementById('comment2');
+				name1 = document.getElementById('name1');
+				name2 = document.getElementById('name2');
+				submit1 = document.getElementById('submit1');
+				submit2 = document.getElementById('submit2');
+				comments1 = document.getElementById('comments1');
+				comments2 = document.getElementById('comments2');
+				form1 = document.getElementById('form1');
+				form2 = document.getElementById('form2');
+				project1 = document.getElementById('project1');
+				project2 = document.getElementById('project2');
+
+				project1.addEventListener('mouseover',showit);
+				project1.addEventListener('mouseleave',hideit);
+				project2.addEventListener('mouseover',showitt);
+				project2.addEventListener('mouseleave',hideitt);
+				submit1.addEventListener('click',sendData1);
+				submit2.addEventListener('click',sendData2);
+				console.log("IN SERVER");
+			}
+			function sendData1(){
+				fetch('/project1comments?name='+name1.value+"&comment="comment1.value)
+			  	.then(response => response.json())
+			  	.then(data => populateComments1(data));
+			}
+			function sendData2(){
+				fetch('/project2comments?name='+name2.value+"&comment="comment2.value)
+			  	.then(response => response.json())
+			  	.then(data => populateComments2(data));
+			}
+			function showit(){
+				form1.style.visibility = "visible";
+			}
+			function hideit(){
+				form1.style.visibility = "hidden";
+			}
+			function showitt(){
+				form2.style.visibility = "visible";
+			}
+			function hideitt(){
+				form2.style.visibility = "hidden";
+			}
+			function populateComments1(data){
+				for (var i = 0; i<data.length; i++){
+					comments1.innerHTML = comments1.innerHTML + data[i].name + ": "+ data[i].comment + "<br />";
+				}
+			}
+			function populateComments2(data){
+				for (var i = 0; i<data.length; i++){
+					comments2.innerHTML = comments1.innerHTML + data[i].name + ": "+ data[i].comment + "<br />";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1 class ="header">HIRE ME</h1>
+		<div class="project" id ="project1">
+			<div class = "title">Virtual Physicality<br></div>
+			<div class = "date">January, 2020</div>
+			<iframe class ="giph" src="https://giphy.com/embed/idoxY8mXcNnEI6RyTq" width=300px height="175px"></iframe>
+			<p class = "description">Using PoseNet--a machine learning model that reads camera data and guesses where there are key points denoting the position of human body parts--I created a sketch that would read camera data from the user, and use the position of their head and hands to interact with a 3D environment being rendered in real time. I plugged position data from the users’ body so that the 3D camera would translate their head movements to emulate actual 3D movement within the environment. This mimics the way we interact with actual objects in real life, and invites the user to take part in and explore the interaction. In doing so, this allows the user to explore a relationship they usually only share with physical objects, and share it with a virtual environment. Try it <a href="https://editor.p5js.org/butterbaby4427/full/nQAHyB9L5">here</a>
+			</p>
+			<form id="form1" class = "comment_box">
+				<input type="text" name="name" id="name1" value="Your Name" />
+				<input type="text" name="comment" id="comment1" value="Comment" />
+				<input type="button" id="submit1" name="submitbutton" value="Submit" />
+				<div id ="comments1"></div>
+			</form>
+		</div>
+		<br>
+		<div class="project" id = "project2">
+			<div class = "title">Motion Graphics<br></div>
+			<div class = "date">September, 2020</div>
+			<iframe class ="giph" src="https://giphy.com/embed/SYvOIQ2ASUQeM0B9oL" width=300px height="175px"></iframe>
+			<p class = "description">Beginning the summer of 2020, I started putting aside some free time to design and render motion graphics animations in Blender on my laptop. To hone the software skills I’ve developed at school, I’ve been learning 3D design and shading by creating short animations inspired by nature, mathematics, and code. see more <a href="https://www.instagram.com/angelotiu/">here</a>
+			</p>
+				<form id="form2" class = "comment_box">
+				<input type="text" name="name" id="name2" value="Your Name" />
+				<input type="text" name="comment" id="comment2" value="Comment" />
+				<input type="button" id="submit2" name="submitbutton" value="Submit" />
+				<div id ="comments2"></div>
+			</form>
+		</div>
+	</body>
+</html>

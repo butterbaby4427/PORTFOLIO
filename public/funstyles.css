@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,800&display=swap');
+
+.title{
+	color:black;
+}
+/* GO AWAY LOOK AT ME LATER IDIOT */
+body {
+	background: rgb(126,0,106);
+	background: linear-gradient(90deg, rgba(126,0,106,1) 0%, rgba(190,110,0,1) 100%);
+}
+
+.header {
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+.comment_box{
+	visibility: hidden;
+}
+
+.project{
+	border: 3px solid white;
+	padding: 25px;
+	position: relative;
+	top:30px;
+	left:50px;
+	width:1250px;
+	height:200px;
+}
+.title{
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	font-size: 16px;
+	display: inline-block;
+	width:900px;
+}
+.date{
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	font-size: 14px;
+	display: inline-block;
+	width:900px;
+}
+.description{
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+	font-size: 14px;
+	display: inline-block;
+	width:900px;
+}
+.giph{
+	position: absolute;
+	right:10px;
+	top:10px;
+}

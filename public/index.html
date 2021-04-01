@@ -37,14 +37,22 @@
 				submit1.addEventListener('click',sendData1);
 				submit2.addEventListener('click',sendData2);
 				console.log("IN SERVER");
+
+				fetch('/project1comments')
+	  			.then(response => response.json())
+	  			.then(data => populateComments1(data));
+
+	  			fetch('/project2comments')
+	  			.then(response => response.json())
+	  			.then(data => populateComments2(data));
 			}
-			function sendData1(){
-				fetch('/project1comments?name='+name1.value+"&comment="comment1.value)
+			function sendData1(){//HOW DO I MAKE THIS HAPPEN AT SERVER INIT?
+				fetch('/project1comments?name='+name1.value+"&comment="+comment1.value)
 			  	.then(response => response.json())
 			  	.then(data => populateComments1(data));
 			}
 			function sendData2(){
-				fetch('/project2comments?name='+name2.value+"&comment="comment2.value)
+				fetch('/project2comments?name='+name2.value+"&comment="+comment2.value)
 			  	.then(response => response.json())
 			  	.then(data => populateComments2(data));
 			}
@@ -67,7 +75,7 @@
 			}
 			function populateComments2(data){
 				for (var i = 0; i<data.length; i++){
-					comments2.innerHTML = comments1.innerHTML + data[i].name + ": "+ data[i].comment + "<br />";
+					comments2.innerHTML = comments2.innerHTML + data[i].name + ": "+ data[i].comment + "<br />";
 				}
 			}
 		</script>
